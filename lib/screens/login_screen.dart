@@ -4,7 +4,7 @@ import 'package:flash_chat/constants.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = "login_screen";
@@ -24,8 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
     timeDilation;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: ModalProgressHUD(
+      body: BlurryModalProgressHUD(
         inAsyncCall: showSpinner,
+        blurEffectIntensity: 4,
         opacity: .5,
         color: Colors.lightBlueAccent,
         progressIndicator: CircularProgressIndicator(),

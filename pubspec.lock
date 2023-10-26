@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  blurry_modal_progress_hud:
+    dependency: "direct main"
+    description:
+      name: blurry_modal_progress_hud
+      sha256: f3b176830f026bbe0f477029c785b1c3a842f2bb4393da05cc7ef7eb0587f25c
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -49,6 +57,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      sha256: "7dd7e9505e4e895c87e7bc0c4cf49a2c0b0255fae900ab7fcac3c5daa9f422d5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.12.0"
+  cloud_firestore_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_firestore_platform_interface
+      sha256: f1a9436bc0d7f49e60df33b5eb872772733646d4f211516220a1f6006c8177f5
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.2"
+  cloud_firestore_web:
+    dependency: transitive
+    description:
+      name: cloud_firestore_web
+      sha256: "8df1e484d57f771242c2d8b3a534b921dfb0ba144a1cd441f23b1c7c4f33c3a1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.8.2"
   collection:
     dependency: transitive
     description:
@@ -224,14 +256,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  modal_progress_hud_nsn:
-    dependency: "direct main"
-    description:
-      name: modal_progress_hud_nsn
-      sha256: "0b0d95e5ce3e1884390624fbe79fcf90d7de10abe05d26c0e276c25e7130e3e0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.0"
   path:
     dependency: transitive
     description:

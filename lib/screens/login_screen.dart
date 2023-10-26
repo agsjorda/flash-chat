@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.white,
       body: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: SingleChildScrollView(
             reverse: true,
             child: Column(
@@ -33,27 +33,31 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Image.asset('images/logo.png'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
                   onChanged: (value) {
                     //Do something with the user input.
                   },
                   decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Enter your email'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 TextField(
+                  obscureText: true,
+                  textAlign: TextAlign.center,
                   onChanged: (value) {
                     //Do something with the user input.
                   },
                   decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Enter your password'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 RoundedButton(

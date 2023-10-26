@@ -7,7 +7,7 @@ import '../components/rounded_button.dart';
 class WelcomeScreen extends StatefulWidget {
   static const String id = "welcome_screen";
 
-  const WelcomeScreen({key});
+  const WelcomeScreen({super.key});
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();

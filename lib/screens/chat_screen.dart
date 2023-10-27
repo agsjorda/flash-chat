@@ -37,6 +37,30 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+  // void getMessages() async {
+  //   db.collection("messages").get().then(
+  //     (querySnapshot) {
+  //       print("Successfully completed");
+  //       for (var docSnapshot in querySnapshot.docs) {
+  //         print('${docSnapshot.id} => ${docSnapshot.data()}');
+  //       }
+  //     },
+  //     onError: (e) => print("Error completing: $e"),
+  //   );
+  // }
+
+  void messagesStream() async {
+    await for (var snapshot in db.collection("messages").snapshots()) {
+      for (var message in snapshot.docs) {
+        print(message.data());
+        // final messageData = message.data();
+        // final sender = messageData['sender'];
+        // final text = messageData['text'];
+        // print('$sender: $text');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,13 +69,16 @@ class _ChatScreenState extends State<ChatScreen> {
         actions: <Widget>[
           IconButton(
               icon: const Icon(Icons.close),
-              onPressed: () async {
+              onPressed: () {
                 //Implement logout functionality
-                await _auth.signOut();
-                Navigator.pushNamed(context, WelcomeScreen.id);
+                messagesStream();
+                // await _auth.signOut();
+                // Navigator.pushNamed(context, WelcomeScreen.id);
               }),
         ],
-        title: const Text('⚡️Chat'),
+        title: const Center(
+          child: Text('⚡️Chat'),
+        ),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
@@ -59,6 +86,29 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            StreamBuilder<QuerySnapshot>(
+              stream: db.collection("messages").snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                final messages = snapshot.data!.docs;
+                List<Widget> messageWidgets = [];
+
+                for (var message in messages) {
+                  final messageText = message['text'];
+                  final messageSender = message['sender'];
+
+                  final messageWidget =
+                      Text('$messageText from $messageSender');
+                  messageWidgets.add(messageWidget);
+                }
+                return Column(
+                  children: messageWidgets,
+                );
+              },
+            ),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -74,7 +124,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      db.collection("messages").doc(loggedInUser?.uid).set(
+                      db.collection("messages").doc().set(
                           {"sender": loggedInUser?.email, "text": textMessage});
                       //Implement send functionality.
                     },
